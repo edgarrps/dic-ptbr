@@ -1,6 +1,6 @@
 import ReactTextareaAutosize from "react-textarea-autosize"
 
-const SearchInput = () => {
+export default function SearchInput () {
     return (
         <div className='grid rounded-xl bg-cyan-400 w-[700px] h-[300px] place-items-center'>
             <div>
@@ -11,5 +11,3 @@ const SearchInput = () => {
         </div>
     )
 }
-
-export default SearchInput
