@@ -1,6 +1,9 @@
 import ReactTextareaAutosize from "react-textarea-autosize"
 
 export default function SearchInput () {
+
+    const handleSubmit = (e:Event) => e.preventDefault()
+
     return (
         <div className='grid rounded-xl bg-cyan-400 w-[700px] h-[300px] place-items-center shadow-md hover:shadow-2xl ease-in-out duration-300'>
             <p className='hover:shadow-md rounded-full'>
