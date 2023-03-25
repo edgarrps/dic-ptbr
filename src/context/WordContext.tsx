@@ -8,10 +8,9 @@ type ContextType = {
 interface Props {
     children?: ReactNode
 }
-
+const [word, setWord] = useState('')
 export const WordContext = createContext<ContextType>({ word: '', setWord() { } })
 export const WordProvider = ({children}:Props) => {
-    const [word, setWord] = useState('')
 
     return (
         <WordContext.Provider value={{ word, setWord }}>{children}</WordContext.Provider>
