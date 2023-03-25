@@ -1,8 +1,16 @@
+import { useContext } from "react"
 import ReactTextareaAutosize from "react-textarea-autosize"
+import { WordContext } from "../context/WordContext"
+
+type Props = {
+    word: string
+    setWord(value: string): void
+}
 
 export default function SearchInput() {
-
-    const handleSubmit = (e: any) => e.preventDefault()
+    const {word, setWord}:Props = useContext(WordContext)
+    const handleSubmit = (e:React.FormEvent<HTMLFormElement>):void => e.preventDefault()
+    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>):void => setWord(e.currentTarget.value)
 
     return (
 
@@ -20,14 +28,14 @@ export default function SearchInput() {
 
                 <p>
                     <input className='bg-stone-100 
-                 m-2 w-[360px] h-[30px] focus:outline-0 pl-3 pr-2' type='text' />
+                 m-2 w-[360px] h-[30px] focus:outline-0 pl-3 pr-2' autoComplete='off' type='text' required />
 
                     <button className='bg-purple-100 pl-2 pr-2 
                 h-[30px] font-bold text-stone-500'>Busca</button>
                 </p>
 
-                <ReactTextareaAutosize className='w-[400px] bg-cyan-400
-                 pl-2 pr-2 pt-1 pb-1 focus:outline-none resize-none' />
+                <ReactTextareaAutosize onChange={handleChange} className='w-[400px] bg-cyan-400
+                 pl-2 pr-2 pt-1 pb-1 focus:outline-none resize-none' disabled/>
             </div>
         </form>
     )

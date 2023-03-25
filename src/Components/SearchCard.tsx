@@ -1,11 +1,9 @@
 import SearchInput from "./SearchInput"
 
-const SearchCard = () => {
+export default function SearchCard () {
     return (
         <div className='grid place-items-center p-6'>
-            <SearchInput />
+            <SearchInput/>
         </div>
     )
 }
-
-export default SearchCard
