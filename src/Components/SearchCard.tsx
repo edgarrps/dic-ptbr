@@ -4,17 +4,15 @@ import { WordContext } from "../context/WordContext"
 
 type Props = {
     word: string
-    setWord(value: string): void
+    handleChange(e: React.ChangeEvent<HTMLTextAreaElement>): void
 }
 
 export default function SearchCard() {
 
-    const { word, setWord }: Props = useContext(WordContext)
+    const { word, handleChange }: Props = useContext(WordContext)
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => e.preventDefault()
-    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => setWord(e.currentTarget.value)
     const api = `https://api.dicionario-aberto.net/word/${word}`
 
-    console.log(api)
     return (
         <div className='grid place-items-center p-6'>
 
@@ -38,7 +36,7 @@ export default function SearchCard() {
                     h-[30px] font-bold text-stone-500'>Busca</button>
                     </p>
 
-                    <ReactTextareaAutosize onChange={handleChange} className='w-[400px] bg-cyan-400
+                    <ReactTextareaAutosize onChange={handleChange} value={word} className='w-[400px] bg-cyan-400
                      pl-2 pr-2 pt-1 pb-1 focus:outline-none resize-none' disabled />
                 </div>
             </form>
