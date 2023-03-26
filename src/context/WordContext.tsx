@@ -15,7 +15,14 @@ export const WordProvider = ({ children }: Props) => {
     const api = `https://api.dicionario-aberto.net/word/${word}`
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => setWord(e.target.value)
 
-
+    useEffect(() => {
+        (() => {
+            (async function () {
+                const data = await fetch(api).then((res) => res.json())
+                console.log(setWord(data))
+            })
+        })()
+    }, [])
 
     return (
         <WordContext.Provider value={{ word, handleChange }}>{children}</WordContext.Provider>
