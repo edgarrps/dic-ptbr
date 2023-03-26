@@ -1,4 +1,4 @@
-export default function Header() {
+export default function TitleBar() {
     return (
         <div className='flex items-center bg-white pl-2.5 space-x-2 rounded-t-xl w-[700px] h-[30px]'>
             <div className='rounded-full bg-red-600 w-[10px] h-[10px]' />

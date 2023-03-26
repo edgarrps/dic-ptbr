@@ -2,7 +2,7 @@ import { createContext, ReactNode, useState, useEffect } from 'react'
 
 type ContextType = {
     word: string
-    handleChange(e: React.ChangeEvent<HTMLInputElement>): void
+    handleChange(e: React.ChangeEvent<HTMLInputElement>): any
 }
 
 interface Props {
@@ -12,17 +12,7 @@ interface Props {
 export const WordContext = createContext<ContextType>({ word: '', handleChange() { } })
 export const WordProvider = ({ children }: Props) => {
     const [word, setWord] = useState('')
-    const api = `https://api.dicionario-aberto.net/word/${word}`
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => setWord(e.target.value)
-
-    useEffect(() => {
-        (() => {
-            (async function () {
-                const data = await fetch(api).then((res) => res.json())
-                console.log(setWord(data))
-            })
-        })()
-    }, [])
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>): any => setWord(e.target.value)
 
     return (
         <WordContext.Provider value={{ word, handleChange }}>{children}</WordContext.Provider>
