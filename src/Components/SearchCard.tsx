@@ -6,13 +6,14 @@ import { api } from "../services/api"
 
 type Props = {
     word: string
-    handleChange(e: React.ChangeEvent<HTMLInputElement>): any
+    handleChange(e: React.ChangeEvent<HTMLInputElement>): void
+    setWord(value: string): void
 }
 
 export default function SearchCard() {
 
-    const { word, handleChange }: Props = useContext(WordContext)
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>): any => e.preventDefault()
+    const { word, handleChange, setWord }: Props = useContext(WordContext)
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => e.preventDefault()
 
     async function handleSearch() {
         if (word === '') alert('Preencha uma palavra para buscar no dicionário')
@@ -21,7 +22,8 @@ export default function SearchCard() {
                 const res = await api.get(`${word}`)
                 console.log(res)
             } catch {
-                alert('erro')
+                alert('Palavra não encontrada')
+                setWord('')
             }
         }
     }
@@ -37,7 +39,7 @@ export default function SearchCard() {
 
                     <p>
                         <input onChange={handleChange} value={word} className='bg-stone-100 
-                     m-2 w-[360px] h-[30px] focus:outline-0 pl-3 pr-2' autoComplete='off' type='text' />
+                     m-2 w-[360px] h-[30px] focus:outline-0 pl-3 pr-2' autoComplete='off' type='text'/>
 
                         <button onClick={handleSearch} className='bg-purple-100 pl-2 pr-2 
                     h-[30px] font-bold text-stone-500'>Busca</button>
