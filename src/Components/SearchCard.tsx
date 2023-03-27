@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import ReactTextareaAutosize from "react-textarea-autosize"
 import { WordContext } from "../context/WordContext"
 import TitleBar from "./TitleBar"
@@ -10,17 +10,20 @@ type Props = {
     setWord(value: string): void
 }
 
+
 export default function SearchCard() {
 
     const { word, handleChange, setWord }: Props = useContext(WordContext)
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => e.preventDefault()
+    const [result, setResult]: any = useState({})
 
     async function handleSearch() {
         if (word === '') alert('Preencha uma palavra para buscar no dicionário')
         else {
             try {
                 const res = await api.get(`${word}`)
-                console.log(res)
+                setResult(res.data)
+                setWord('')
             } catch {
                 alert('Palavra não encontrada')
                 setWord('')
