@@ -15,7 +15,8 @@ export default function SearchCard() {
 
     const { word, handleChange, setWord }: Props = useContext(WordContext)
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => e.preventDefault()
-    const [result, setResult]: any = useState({})
+    const [result, setResult] = useState([{}])
+
 
     async function handleSearch() {
         if (word === '') alert('Preencha uma palavra para buscar no dicionário')
@@ -31,6 +32,7 @@ export default function SearchCard() {
         }
     }
 
+
     return (
         <div className='grid place-items-center p-6'>
 
@@ -42,14 +44,17 @@ export default function SearchCard() {
 
                     <p>
                         <input onChange={handleChange} value={word} className='bg-stone-100 
-                     m-2 w-[360px] h-[30px] focus:outline-0 pl-3 pr-2' autoComplete='off' type='text'/>
+                     m-2 w-[360px] h-[30px] focus:outline-0 pl-3 pr-2' autoComplete='off' type='text' />
 
                         <button onClick={handleSearch} className='bg-purple-100 pl-2 pr-2 
                     h-[30px] font-bold text-stone-500'>Busca</button>
                     </p>
-
-                    <ReactTextareaAutosize className='w-[400px] bg-cyan-400
-                     pl-2 pr-2 pt-10 pb-1 focus:outline-none resize-none' disabled />
+                    {Object.keys(result).length > 0 && (
+                        <div className='w-[400px] bg-cyan-400
+                     pl-2 pr-2 pt-10 pb-1 focus:outline-none resize-none'>
+                        <h2>{`: ${result.meanings}`}</h2>
+                        </div>
+                    )} 
                 </div>
             </form>
         </div>
