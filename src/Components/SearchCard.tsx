@@ -52,14 +52,15 @@ export default function SearchCard() {
                     {Object.keys(result).length > 0 && (
                         <div className='w-[400px] bg-cyan-400
                      pl-2 pr-2 pt-10 pb-1 focus:outline-none resize-none'>
-                        <h1>{`Palavra: teste`}</h1>
-                        <h2>{`: ${result[0].meanings}`}</h2>
-                        ------------------------
-                        <h2>{`${result[0].etymology.length > 0 ? 
-                            `Etimologia: ${result[0].etymology}` : '' }`}</h2>
+                            <h1>{`Palavra: teste`}</h1>
+                            <h2>{`: ${result[0].meanings}`}</h2>
+                            --------
+                            <h2>{`${result[0].etymology.length > 0 ?
+                                `Etimologia: ${result[0].etymology}` : ''}`}</h2>
+
 
                         </div>
-                    )} 
+                    )}
                 </div>
             </form>
         </div>
