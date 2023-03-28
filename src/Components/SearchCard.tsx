@@ -12,11 +12,10 @@ type Props = {
 
 
 export default function SearchCard() {
-
+    let display
     const { word, handleChange, setWord }: Props = useContext(WordContext)
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => e.preventDefault()
-    const [result, setResult] = useState([{}])
-    const quebra = ('.,').replace(/\r?\n/g, '<br/>') 
+    const [result, setResult]:any = useState([])
 
     async function handleSearch() {
         if (word === '') alert('Preencha uma palavra para buscar no dicionário')
@@ -27,10 +26,23 @@ export default function SearchCard() {
                 setWord('')
             } catch {
                 alert('Palavra não encontrada')
+                setResult('')
                 setWord('')
             }
         }
     }
+    result ? display = result.map((data: any) => {
+        const { meanings, etymology } = data
+
+        return (
+            < div className='pt-10 w-[530px] pl-5 text-justify' >
+                <div className=''>{meanings}</div>
+                <div>{etymology}</div>
+            </div >)
+    })
+        :
+        'nada encontrado'
+
 
     return (
         <div className='grid place-items-center p-6'>
@@ -39,7 +51,7 @@ export default function SearchCard() {
 
                 <TitleBar />
 
-                <div className='flex flex-col pt-10 rounded-b-xl bg-cyan-400 place-items-center shadow-xl'>
+                <div className='flex flex-col pt-10 rounded-b-xl bg-cyan-400 place-items-center shadow-xl pb-12'>
 
                     <p>
                         <input onChange={handleChange} value={word} className='bg-stone-100 
@@ -48,16 +60,9 @@ export default function SearchCard() {
                         <button onClick={handleSearch} className='bg-purple-100 pl-2 pr-2 
                     h-[30px] font-bold text-stone-500'>Busca</button>
                     </p>
-
-                    {Object.keys(result).length > 0 && (
-                        <div className='w-[400px] bg-cyan-400
-                     pl-2 pr-2 pt-10 pb-1 focus:outline-none resize-none'>
-                            <h2 className={`text-justify`}>{result[0].meanings ? quebra : ''}</h2>
-                            <h2>{`${result[0].etymology}`}</h2>
-                        </div>
-                    )}
+                    {display}
                 </div>
             </form>
         </div>
     )
-} 
+}
