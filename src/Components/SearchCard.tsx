@@ -54,6 +54,10 @@ export default function SearchCard() {
                      pl-2 pr-2 pt-10 pb-1 focus:outline-none resize-none'>
                         <h1>{`Palavra: teste`}</h1>
                         <h2>{`: ${result[0].meanings}`}</h2>
+                        ------------------------
+                        <h2>{`${result[0].etymology.length > 0 ? 
+                            `Etimologia: ${result[0].etymology}` : '' }`}</h2>
+
                         </div>
                     )} 
                 </div>
