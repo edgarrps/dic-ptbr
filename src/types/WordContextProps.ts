@@ -8,5 +8,4 @@ export type WordContextProps =
         setResult: (result: []) => void
          handleChange(e: React.ChangeEvent<HTMLInputElement>): void
         handleSubmit(e: React.FormEvent<HTMLFormElement>): void
-        children: Element[]
     }
