@@ -1,21 +1,14 @@
-import { useContext, useState } from "react"
-import ReactTextareaAutosize from "react-textarea-autosize"
+import { useContext } from "react"
 import { WordContext } from "../context/WordContext"
-import TitleBar from "./TitleBar"
 import { api } from "../services/api"
+import { WordContextProps } from '../types/WordContextProps'
+import TitleBar from "./TitleBar"
 
-type Props = {
-    word: string
-    handleChange(e: React.ChangeEvent<HTMLInputElement>): void
-    setWord(value: string): void
-}
 
 
 export default function SearchCard() {
     let display
-    const { word, handleChange, setWord }: Props = useContext(WordContext)
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => e.preventDefault()
-    const [result, setResult]: any = useState([])
+    const { word, handleChange, setWord, result, setResult, handleSubmit }: WordContextProps = useContext(WordContext)
 
     async function handleSearch() {
         if (word === '') alert('Preencha uma palavra para buscar no dicionário')
@@ -31,15 +24,15 @@ export default function SearchCard() {
             }
         }
     }
-    result ? display = result.map((data: any) => {
+    result ? display = result.map((data) => {
         const { partOfSpeech, meanings, etymology } = data
 
         return (
-            < div className='pt-10 w-[530px] pl-5 text-justify' >
+            < div className='pt-10 w-[530px] pl-5 text-justify'>
                 <div className='text-stone-700 font-mono pb-2'><span className='font-sans font-bold italic text-yellow-700'>Classificação: </span>{partOfSpeech}</div>
                 <div className='text-stone-700 font-mono pb-2'><span className='font-sans font-bold italic text-red-700'>Significado: </span>{meanings}</div>
-                <div className='text-stone-700 font-mono pb-2'><span className='font-sans font-bold italic text-purple-700'>Etimologia: </span>{etymology}</div>
-            </div >
+                {etymology ? <div className='text-stone-700 font-mono pb-2'><span className='font-sans font-bold italic text-purple-700'>Etimologia: </span>{etymology}</div> : ''}
+            </div>
         )
     })
         :
