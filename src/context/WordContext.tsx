@@ -3,7 +3,7 @@ import { WordContextProps } from '../types/WordContextProps'
 
 
 export const WordContext = createContext<WordContextProps>({ word: '', handleChange() { }, setWord() { }, result: [], setResult() { }, handleSubmit() { }})
-export const WordProvider = ({ children }: WordContextProps) => {
+export const WordProvider = ({ children }: any) => {
     const [result, setResult] = useState<[] | []>()
     const [word, setWord] = useState('')
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => e.preventDefault()
