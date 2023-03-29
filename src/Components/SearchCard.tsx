@@ -19,7 +19,7 @@ export default function SearchCard() {
                 setWord('')
             } catch {
                 alert('Palavra não encontrada')
-                setResult('')
+                setResult([])
                 setWord('')
             }
         }
