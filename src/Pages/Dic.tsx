@@ -1,11 +1,9 @@
-import { useState } from 'react'
 import SearchCard from '../Components/SearchCard'
-
 
 export default function Dic() {
 
     return (
-        <div className='bg-gradient-to-r from-cyan-500 to-blue-500 h-screen w-screen pt-20'>
+        <div className='grid place-items-center pt-20 pb-10'>
             <SearchCard/>
         </div>
     )
